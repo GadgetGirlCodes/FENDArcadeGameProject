@@ -1,12 +1,13 @@
                                                  // Enemies our player must avoid
 function Enemy() {
     // Variables applied to each of our instances go here
-    // Set Enemy initial location
+		this.x = 0;
+		this.y = 0;// Set Enemy initial location
     // Set Enemy speed
 
     // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
+	// a helper we've provided to easily load images
+	this.sprite = 'images/enemy-bug.png';
 };
 
 // Update the enemy's position, required method for game
@@ -28,8 +29,28 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 function Player() {
-    this.sprite = "images/char-horn-girl.png";
+		this.sprite = "images/char-horn-girl.png";
+        this.horz = 101;
+        this.vert = 83;
+        this.startX = this.horz * 2;
+        this.startY = (this.vert * 5) - 20;
+        this.x = this.startX;
+        this.y = this.startY;        
 };
+	
+	Player.prototype.update = function(dt) {
+        // Update player location
+        // Handle collision with enemy
+    };
+
+	Player.prototype.render = function() {
+		ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+	};
+
+	Player.prototype.handleInput = function() {
+		if ()
+        // Move player according to allowed key input
+    };
 
 const enemyOne = new Enemy();
 const enemyTwo = new Enemy(); 
