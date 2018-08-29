@@ -1,9 +1,10 @@
                                                  // Enemies our player must avoid
-function Enemy() {
+function Enemy(x, y) {
     // Variables applied to each of our instances go here
-		this.x = 0;
-		this.y = 0;// Set Enemy initial location
-    // Set Enemy speed
+		this.x = x;
+		this.y = y + 55;// Set Enemy initial location
+    	this.horz = 101;
+    	this.vert = 83;// Set Enemy speed
 
     // The image/sprite for our enemies, this uses
 	// a helper we've provided to easily load images
@@ -16,7 +17,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    // Update Enemy location
+	
+	// Update Enemy location
+    if (this.x < this.horz * 5) {
+    	this.x += 200 * dt;
+    } else {
+    	this.x = 0;
+    }
     // Handle collision with Player
 };
 
@@ -24,6 +31,8 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -73,9 +82,10 @@ function Player() {
         // Move player according to allowed key input
     };
 
-const enemyOne = new Enemy();
-const enemyTwo = new Enemy(); 
-const enemyThree = new Enemy(); // Now instantiate your objects.
+const enemyOne = new Enemy((-101*1.5), 0);
+const enemyTwo = new Enemy(-101, 83); 
+const enemyThree = new Enemy((-101*2.5), 166); // Now instantiate your objects.
+
 const allEnemies = [enemyOne, enemyTwo, enemyThree]; // Place all enemy objects in an array called allEnemies
 
 const player = new Player();// Place the player object in a variable called player
