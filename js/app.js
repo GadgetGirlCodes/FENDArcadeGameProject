@@ -19,10 +19,10 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 	
 	// Update Enemy location
-    if (this.x < this.horz * 5) {
+    if (this.x < this.horz * 6) {
     	this.x += 200 * dt;
     } else {
-    	this.x = 0;
+    	this.x = -101;
     }
     // Handle collision with Player
 };
@@ -82,11 +82,16 @@ function Player() {
         // Move player according to allowed key input
     };
 
-const enemyOne = new Enemy((-101*1.5), 0);
-const enemyTwo = new Enemy(-101, 83); 
-const enemyThree = new Enemy((-101*2.5), 166); // Now instantiate your objects.
+const enemyOne = new Enemy(-101, 0);
+const enemyTwo = new Enemy((-101*2.5), 0);
+const enemyThree = new Enemy((-101*2), 83); 
+const enemyFour = new Enemy((-101*4), 83);
+const enemyFive = new Enemy((-101*6), 83);
+const enemySix = new Enemy((-101*1.5), 166);
+const enemySeven = new Enemy((-101*3.5), 166);
+// Now instantiate your objects.
 
-const allEnemies = [enemyOne, enemyTwo, enemyThree]; // Place all enemy objects in an array called allEnemies
+const allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour, enemyFive, enemySix, enemySeven]; // Place all enemy objects in an array called allEnemies
 
 const player = new Player();// Place the player object in a variable called player
 
