@@ -25,6 +25,9 @@ Enemy.prototype.update = function(dt) {
     	this.x = -101;
     }
     // Handle collision with Player
+    if (player.y == this.y) {
+    	this.display = "none";
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -42,14 +45,25 @@ function Player() {
         this.horz = 101;
         this.vert = 83;
         this.startX = this.horz * 2;
-        this.startY = (this.vert * 5) - 20;
+        this.startY = (this.vert * 4) + 55;
         this.x = this.startX;
-        this.y = this.startY;        
+        this.y = this.startY;
+        this.victory = false;
 };
 	
 	Player.prototype.update = function(dt) {
         // Update player location
+        if (this.y === -28) {
+        	this.victory = true;
+        }
         // Handle collision with enemy
+        for (enemy of allEnemies) {
+        	if (this.y === enemy.y && (enemy.x + enemy.horz/2 > this.x && enemy.x < this.x + this.horz/2)) {
+        		this.x = player.startX;
+        		this.y = player.startY;
+        	}
+        }
+        
     };
 
 	Player.prototype.render = function() {
@@ -83,7 +97,7 @@ function Player() {
     };
 
 const enemyOne = new Enemy(-101, 0);
-const enemyTwo = new Enemy((-101*2.5), 0);
+const enemyTwo = new Enemy((-101*2), 0);
 const enemyThree = new Enemy((-101*2), 83); 
 const enemyFour = new Enemy((-101*4), 83);
 const enemyFive = new Enemy((-101*6), 83);
@@ -91,7 +105,7 @@ const enemySix = new Enemy((-101*1.5), 166);
 const enemySeven = new Enemy((-101*3.5), 166);
 // Now instantiate your objects.
 
-const allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour, enemyFive, enemySix, enemySeven]; // Place all enemy objects in an array called allEnemies
+const allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour, enemySix, enemySeven]; // Place all enemy objects in an array called allEnemies
 
 const player = new Player();// Place the player object in a variable called player
 
