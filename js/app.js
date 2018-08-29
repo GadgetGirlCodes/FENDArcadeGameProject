@@ -1,11 +1,13 @@
 function Enemy(x, y) {
+	this.sprite = 'images/enemy-bug.png';
 	// Set Enemy initial location
 	this.x = x;
 	this.y = y + 55;
 	// Set Enemy speed
     this.horz = 101;
     this.vert = 83;
-	this.sprite = 'images/enemy-bug.png';
+    // Reset enemy to start position
+    this.reset = -this.horz;
 };
 
 // Update the enemy's position
@@ -14,29 +16,27 @@ Enemy.prototype.update = function(dt) {
     if (this.x < this.horz * 6) {
     	this.x += 200 * dt;
     } else {
-    	this.x = -101;
+    	this.x = this.reset;
     }
-    // Handle collision with Player
 };
 
+// Adds the enemy to the canvas
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Enemy.prototype.reset = function(x, y) {
-	this.x = x;
-	this.y = y + 55;
-};
-
-
+// Building a player object
 function Player() {
 	this.sprite = "images/char-horn-girl.png";
+	// Determines distance sprite moves across screen
     this.horz = 101;
     this.vert = 83;
+    // Determines initial start position of sprite
     this.startX = this.horz * 2;
     this.startY = (this.vert * 4) + 55;
     this.x = this.startX;
     this.y = this.startY;
+    // Determines a win condition
     this.victory = false;
 };
 	
@@ -92,7 +92,7 @@ Player.prototype.reset = function() {
 // Creating player and enemies
 const enemyOne = new Enemy(-101, 0);
 const enemyTwo = new Enemy((-101*2), 0);
-const enemyThree = new Enemy((-101*2), 83); 
+const enemyThree = new Enemy((-101*2.5), 83); 
 const enemyFour = new Enemy((-101*4), 83);
 const enemyFive = new Enemy((-101*6), 83);
 const enemySix = new Enemy((-101*1.5), 166);
