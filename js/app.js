@@ -47,8 +47,29 @@ function Player() {
 		ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 	};
 
-	Player.prototype.handleInput = function() {
-		if ()
+	Player.prototype.handleInput = function(input) {
+		switch(input) {
+			case 'left':
+			if (this.x > 0) {
+				this.x -= this.horz;
+			}
+			break;
+			case 'up':
+			if (this.y > 0) {
+				this.y -= this.vert;
+			}
+			break;
+			case 'right':
+			if (this.x < this.horz * 4) {
+				this.x += this.horz;
+			}
+			break;
+			case 'down':
+			if (this.y < this.vert * 4) {
+				this.y += this.vert;
+			}
+			break;
+		}
         // Move player according to allowed key input
     };
 
