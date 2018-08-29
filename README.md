@@ -1,6 +1,21 @@
-frontend-nanodegree-arcade-game
-===============================
+#Classic Arcade Game Clone Project
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+#Goal
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+To create an interactive clone of a classic arcade game using the starter code given by Udacity and supplementing object-oriented programming.
+
+#How To Play
+
+Access the interactive game here: https://gadgetgirlcodes.github.io/FENDArcadeGameProject/
+
+Using the arrow keys of your keyboard, navigate your character across the game board without colliding with any bugs. The game is won when your character reaches the water safely. Colliding with a bug will reset the game.
+
+#Attribution
+
+Thank you to Mathher Cranford for the well written walk-through. Without it, I wouldn't have understood where to get started on this project.
+
+Matt's walk-through can be found here: https://matthewcranford.com/arcade-game-walkthrough-part-1-starter-code-breakdown/
+
+#Contributing
+
+This repository was created solely for the purpose of completing Udacity's Front End Nanodegree Program. Pull requests are welcome, but may not be accepted.
