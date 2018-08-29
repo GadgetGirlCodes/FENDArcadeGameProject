@@ -1,23 +1,15 @@
-                                                 // Enemies our player must avoid
 function Enemy(x, y) {
-    // Variables applied to each of our instances go here
-		this.x = x;
-		this.y = y + 55;// Set Enemy initial location
-    	this.horz = 101;
-    	this.vert = 83;// Set Enemy speed
-
-    // The image/sprite for our enemies, this uses
-	// a helper we've provided to easily load images
+	// Set Enemy initial location
+	this.x = x;
+	this.y = y + 55;
+	// Set Enemy speed
+    this.horz = 101;
+    this.vert = 83;
 	this.sprite = 'images/enemy-bug.png';
 };
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+// Update the enemy's position
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-	
 	// Update Enemy location
     if (this.x < this.horz * 6) {
     	this.x += 200 * dt;
@@ -25,77 +17,79 @@ Enemy.prototype.update = function(dt) {
     	this.x = -101;
     }
     // Handle collision with Player
-    if (player.y == this.y) {
-    	this.display = "none";
-    }
 };
 
-// Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Enemy.prototype.reset = function(x, y) {
+	this.x = x;
+	this.y = y + 55;
+};
 
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
 function Player() {
-		this.sprite = "images/char-horn-girl.png";
-        this.horz = 101;
-        this.vert = 83;
-        this.startX = this.horz * 2;
-        this.startY = (this.vert * 4) + 55;
-        this.x = this.startX;
-        this.y = this.startY;
-        this.victory = false;
+	this.sprite = "images/char-horn-girl.png";
+    this.horz = 101;
+    this.vert = 83;
+    this.startX = this.horz * 2;
+    this.startY = (this.vert * 4) + 55;
+    this.x = this.startX;
+    this.y = this.startY;
+    this.victory = false;
 };
 	
-	Player.prototype.update = function(dt) {
-        // Update player location
-        if (this.y === -28) {
-        	this.victory = true;
-        }
-        // Handle collision with enemy
-        for (enemy of allEnemies) {
-        	if (this.y === enemy.y && (enemy.x + enemy.horz/2 > this.x && enemy.x < this.x + this.horz/2)) {
-        		this.x = player.startX;
-        		this.y = player.startY;
-        	}
-        }
-        
-    };
+Player.prototype.update = function(dt) {
+    // Update player location
+    if (this.y === -28) {
+       	this.victory = true;
+    }
+    // Handles collision with enemy
+    for (enemy of allEnemies) {
+      	if (this.y === enemy.y && (enemy.x + enemy.horz/2 > this.x && enemy.x < this.x + this.horz/2)) {
+       		this.x = player.startX;
+       		this.y = player.startY;
+       	}
+    }
+};
 
-	Player.prototype.render = function() {
-		ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-	};
+Player.prototype.render = function() {
+	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
 
-	Player.prototype.handleInput = function(input) {
-		switch(input) {
-			case 'left':
-			if (this.x > 0) {
-				this.x -= this.horz;
-			}
-			break;
-			case 'up':
-			if (this.y > 0) {
-				this.y -= this.vert;
-			}
-			break;
-			case 'right':
-			if (this.x < this.horz * 4) {
-				this.x += this.horz;
-			}
-			break;
-			case 'down':
-			if (this.y < this.vert * 4) {
-				this.y += this.vert;
-			}
-			break;
+Player.prototype.handleInput = function(input) {
+	// Handles player movement
+	switch(input) {
+		case 'left':
+		if (this.x > 0) {
+			this.x -= this.horz;
 		}
-        // Move player according to allowed key input
-    };
+		break;
+		case 'up':
+		if (this.y > 0) {
+			this.y -= this.vert;
+		}
+		break;
+		case 'right':
+		if (this.x < this.horz * 4) {
+			this.x += this.horz;
+		}
+		break;
+		case 'down':
+		if (this.y < this.vert * 4) {
+			this.y += this.vert;
+		}
+		break;
+	}
+};
 
+Player.prototype.reset = function() {
+	this.x = player.startX;
+    this.y = player.startY; 
+};
+
+// Creating player and enemies
 const enemyOne = new Enemy(-101, 0);
 const enemyTwo = new Enemy((-101*2), 0);
 const enemyThree = new Enemy((-101*2), 83); 
@@ -103,16 +97,12 @@ const enemyFour = new Enemy((-101*4), 83);
 const enemyFive = new Enemy((-101*6), 83);
 const enemySix = new Enemy((-101*1.5), 166);
 const enemySeven = new Enemy((-101*3.5), 166);
-// Now instantiate your objects.
 
-const allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour, enemySix, enemySeven]; // Place all enemy objects in an array called allEnemies
+const allEnemies = [enemyOne, enemyTwo, enemyThree, enemyFour, enemyFive, enemySix, enemySeven];
 
-const player = new Player();// Place the player object in a variable called player
-
+const player = new Player();
 
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
