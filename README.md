@@ -15,6 +15,8 @@ To create an interactive clone of a classic arcade game using the starter code g
 
 Access the interactive game here: https://gadgetgirlcodes.github.io/FENDArcadeGameProject/
 
+Or, to play locally on your PC, download all files from this repository and open the "index.html". This will allow you to play anytime, with or without internet!
+
 Using the arrow keys of your keyboard, navigate your character across the game board without colliding with any bugs. The game is won when your character reaches the water safely. Colliding with a bug will reset the game.
 
 ## Attribution
