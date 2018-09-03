@@ -21,7 +21,7 @@ Using the arrow keys of your keyboard, navigate your character across the game b
 
 ## Attribution
 
-Thank you to Mathher Cranford for the well written walk-through. Without it, I wouldn't have understood where to get started on this project.
+Thank you to Matthew Cranford for the well written walk-through. Without it, I wouldn't have understood where to get started on this project.
 
 Matt's walk-through can be found here: https://matthewcranford.com/arcade-game-walkthrough-part-1-starter-code-breakdown/
 
